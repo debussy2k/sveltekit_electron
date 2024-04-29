@@ -1,0 +1,40 @@
+{
+  "name": "electron-app",
+  "main": "src/main.js",
+  "version": "0.0.1-rc",
+  "scripts": {
+    "dev": "yarn run build:preload && electronmon .",
+    "build": "tsc",
+    "build:preload": "tsc ./src/preload/index.ts",
+    "pack": "electron-builder build --config build.config.js"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.56.7",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
+    "cross-env": "^7.0.3",
+    "electron": "^29.1.6",
+    "electron-builder": "^24.13.3",
+    "electronmon": "^2.0.2",
+    "eslint": "^8",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.4",
+    "zod": "^3.22.4",
+    "@motion_one/common-interface": "0.0.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "electron-updater": "^6.1.8",
+    "electron-log": "^5.1.2",
+    "electron-serve": "^1.3.0",
+    "electron-store": "^8.2.0"
+  },
+  "author": {
+    "name": "irelander",
+    "email": "iiitttiii@naver.com"
+  },
+  "homepage": "https://irelander-vercel.com",
+  "license": "MIT"
+}

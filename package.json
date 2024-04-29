@@ -1,0 +1,34 @@
+{
+  "name": "sveltekit_electron_monorepo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "irelander_kai",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n=svelte,electron -c='#ff3e00',blue \"yarn workspace ui dev\" \"yarn workspace electron-app run dev\"",
+    "build": "concurrently -n=svelte,electron -c='#ff3e00',blue \"yarn workspace ui build\" \"yarn workspace electron-app run build\" && del-cli ./apps/electron/dist/renderer && move-cli ./apps/ui/build ./apps/electron/dist/renderer",
+    "pack:dev": "yarn cleanup && yarn build && yarn workspace electron-app run pack -- --publish never && move-cli ./apps/electron/build ./build",
+    "cleanup": "del-cli ./build && del-cli ./apps/electron/dist",
+    "fix:movecli": "npx --yes crlf --set=LF node_modules/move-cli/cli.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "del-cli": "^5.1.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "move-cli": "^2.0.0"
+  },
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "shared/*"
+    ],
+    "nohoist": [
+      "**/electron",
+      "**/electron/**",
+      "**/@sveltejs",
+      "**/@sveltejs/**"
+    ]
+  }
+}
